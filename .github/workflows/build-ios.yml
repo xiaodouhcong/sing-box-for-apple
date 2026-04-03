@@ -88,6 +88,24 @@ jobs:
             -S apple-tool:,apple:,codesign: \
             -s -k ci_keychain_password ci-build.keychain
 
+      # Fix Localizable.xcstrings encoding — Xcode 16 requires valid UTF-8 JSON
+      - name: Fix Localizable.xcstrings
+        run: |
+          # Re-encode as clean UTF-8 without BOM using Python
+          python3 -c "
+          import json, sys
+          with open('Localizable.xcstrings', 'rb') as f:
+              raw = f.read()
+          # Strip BOM if present
+          if raw.startswith(b'\xef\xbb\xbf'):
+              raw = raw[3:]
+          # Validate JSON and re-write as clean UTF-8
+          data = json.loads(raw.decode('utf-8'))
+          with open('Localizable.xcstrings', 'w', encoding='utf-8', newline='\n') as f:
+              json.dump(data, f, ensure_ascii=False, indent=2)
+          print('Localizable.xcstrings re-encoded as clean UTF-8')
+          "
+
       # xcodebuild archive — disable provisioning profile requirements
       - name: Archive
         run: |
