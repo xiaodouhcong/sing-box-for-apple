@@ -12,13 +12,25 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      # Task 2: Checkout with submodules (Runestone framework)
+      # Checkout with submodules (Runestone framework)
       - name: Checkout
         uses: actions/checkout@v4
         with:
           submodules: recursive
 
-      # Task 3: Generate self-signed certificate and set up temporary Keychain
+      # Download Libbox.xcframework from sing-box releases
+      # Version must match the app's MARKETING_VERSION (1.14.0)
+      - name: Download Libbox.xcframework
+        run: |
+          SING_BOX_VERSION="1.14.0"
+          DOWNLOAD_URL="https://github.com/SagerNet/sing-box/releases/download/v${SING_BOX_VERSION}/Libbox.xcframework.zip"
+          echo "Downloading Libbox.xcframework v${SING_BOX_VERSION}..."
+          curl -L "$DOWNLOAD_URL" -o /tmp/Libbox.xcframework.zip
+          unzip -q /tmp/Libbox.xcframework.zip -d .
+          echo "Libbox.xcframework downloaded and extracted."
+          ls Libbox.xcframework/
+
+      # Generate self-signed certificate and set up temporary Keychain
       - name: Set up self-signed certificate
         run: |
           # Generate RSA private key and self-signed certificate
@@ -53,7 +65,7 @@ jobs:
             -S apple-tool:,apple:,codesign: \
             -s -k ci_keychain_password ci-build.keychain
 
-      # Task 5: xcodebuild archive
+      # xcodebuild archive — disable provisioning profile requirements
       - name: Archive
         run: |
           xcodebuild archive \
@@ -66,31 +78,44 @@ jobs:
             -skipMacroValidation \
             CODE_SIGN_STYLE=Manual \
             CODE_SIGN_IDENTITY="CI Self-Signed" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
             PROVISIONING_PROFILE_SPECIFIER="" \
-            AD_HOC_CODE_SIGNING_ALLOWED=YES \
-            | xcpretty || true
+            DEVELOPMENT_TEAM="" \
+            2>&1 | tee /tmp/xcodebuild.log | xcpretty || true
+
           # Verify archive was created
-          ls /tmp/sing-box.xcarchive
+          if [ ! -d "/tmp/sing-box.xcarchive" ]; then
+            echo "Archive failed. Last 50 lines of build log:"
+            tail -50 /tmp/xcodebuild.log
+            exit 1
+          fi
+          echo "Archive succeeded."
 
-      # Task 6: Export IPA from xcarchive
-      - name: Export IPA
+      # Package xcarchive into IPA manually (bypasses exportArchive profile check)
+      - name: Package IPA
         run: |
-          xcodebuild -exportArchive \
-            -archivePath /tmp/sing-box.xcarchive \
-            -exportPath /tmp/ipa-output \
-            -exportOptionsPlist ExportOptions.plist \
-            -allowProvisioningUpdates
+          APP_PATH=$(find /tmp/sing-box.xcarchive/Products -name "*.app" | head -1)
+          echo "Found app: $APP_PATH"
 
-      # Task 7: Upload IPA as artifact with commit SHA in name
+          mkdir -p /tmp/ipa-output/Payload
+          cp -r "$APP_PATH" /tmp/ipa-output/Payload/
+
+          cd /tmp/ipa-output
+          zip -r "sing-box.ipa" Payload/
+          echo "IPA created: /tmp/ipa-output/sing-box.ipa"
+          ls -lh /tmp/ipa-output/sing-box.ipa
+
+      # Upload IPA as artifact with commit SHA in name
       - name: Upload IPA artifact
         uses: actions/upload-artifact@v4
         with:
           name: sing-box-${{ github.sha }}
-          path: /tmp/ipa-output/*.ipa
+          path: /tmp/ipa-output/sing-box.ipa
           retention-days: 7
           if-no-files-found: error
 
-      # Task 8: Clean up temporary keychain (always runs)
+      # Clean up temporary keychain (always runs)
       - name: Clean up keychain
         if: always()
         continue-on-error: true
