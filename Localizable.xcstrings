@@ -1,4 +1,4 @@
-{
+﻿{
   "sourceLanguage" : "en",
   "strings" : {
     "" : {
@@ -76,18 +76,7 @@
       }
     },
     "%@ (%lld)" : {
-<<<<<<< HEAD
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@ (%2$lld)"
-          }
-        }
-      }
-=======
       "shouldTranslate": false
->>>>>>> 2c0f3e561821283c209cadacef541b81c1d18f63
     },
     "%@ %@" : {
       "localizations" : {
@@ -848,9 +837,6 @@
       }
     },
     "Apple TV" : {
-<<<<<<< HEAD
-
-=======
       "localizations" : {
         "fa" : {
           "stringUnit" : {
@@ -877,7 +863,6 @@
           }
         }
       }
->>>>>>> 2c0f3e561821283c209cadacef541b81c1d18f63
     },
     "Application" : {
       "shouldTranslate" : false
@@ -2094,9 +2079,6 @@
       }
     },
     "Crash Report" : {
-<<<<<<< HEAD
-
-=======
       "localizations" : {
         "fa" : {
           "stringUnit" : {
@@ -2123,7 +2105,6 @@
           }
         }
       }
->>>>>>> 2c0f3e561821283c209cadacef541b81c1d18f63
     },
     "Crash Trigger" : {
       "shouldTranslate" : false
@@ -2438,9 +2419,6 @@
       }
     },
     "Delete All" : {
-<<<<<<< HEAD
-
-=======
       "localizations" : {
         "fa" : {
           "stringUnit" : {
@@ -2467,7 +2445,6 @@
           }
         }
       }
->>>>>>> 2c0f3e561821283c209cadacef541b81c1d18f63
     },
     "Deprecated Warning" : {
       "localizations" : {
@@ -3142,9 +3119,6 @@
       }
     },
     "Empty" : {
-<<<<<<< HEAD
-
-=======
       "localizations" : {
         "fa" : {
           "stringUnit" : {
@@ -3171,7 +3145,6 @@
           }
         }
       }
->>>>>>> 2c0f3e561821283c209cadacef541b81c1d18f63
     },
     "Empty connections" : {
       "localizations" : {
@@ -3605,12 +3578,6 @@
       "shouldTranslate" : false
     },
     "Export Complete" : {
-<<<<<<< HEAD
-
-    },
-    "Export Crash Report" : {
-
-=======
       "localizations" : {
         "fa" : {
           "stringUnit" : {
@@ -3665,7 +3632,6 @@
           }
         }
       }
->>>>>>> 2c0f3e561821283c209cadacef541b81c1d18f63
     },
     "Failed to decode QRS data" : {
       "localizations" : {
@@ -3864,9 +3830,6 @@
       }
     },
     "Files" : {
-<<<<<<< HEAD
-
-=======
       "localizations" : {
         "fa" : {
           "stringUnit" : {
@@ -3893,7 +3856,6 @@
           }
         }
       }
->>>>>>> 2c0f3e561821283c209cadacef541b81c1d18f63
     },
     "Filter" : {
       "localizations" : {
@@ -6734,9 +6696,6 @@
       }
     },
     "Read from connection: %@" : {
-<<<<<<< HEAD
-
-=======
       "localizations" : {
         "fa" : {
           "stringUnit" : {
@@ -6763,7 +6722,6 @@
           }
         }
       }
->>>>>>> 2c0f3e561821283c209cadacef541b81c1d18f63
     },
     "Real-time Speed" : {
       "localizations" : {
@@ -6929,12 +6887,6 @@
       }
     },
     "Remote error: %@" : {
-<<<<<<< HEAD
-
-    },
-    "Reports" : {
-
-=======
       "localizations" : {
         "fa" : {
           "stringUnit" : {
@@ -6989,7 +6941,6 @@
           }
         }
       }
->>>>>>> 2c0f3e561821283c209cadacef541b81c1d18f63
     },
     "Required" : {
       "localizations" : {
@@ -7360,9 +7311,6 @@
       }
     },
     "Sending..." : {
-<<<<<<< HEAD
-
-=======
       "localizations" : {
         "fa" : {
           "stringUnit" : {
@@ -7389,7 +7337,6 @@
           }
         }
       }
->>>>>>> 2c0f3e561821283c209cadacef541b81c1d18f63
     },
     "Service is Running" : {
       "localizations" : {
@@ -7644,9 +7591,6 @@
       }
     },
     "Share With Configuration" : {
-<<<<<<< HEAD
-
-=======
       "localizations" : {
         "fa" : {
           "stringUnit" : {
@@ -7673,7 +7617,6 @@
           }
         }
       }
->>>>>>> 2c0f3e561821283c209cadacef541b81c1d18f63
     },
     "Show in Menu Bar" : {
       "localizations" : {
@@ -8483,9 +8426,6 @@
       }
     },
     "To export this crash report to your iPhone or iPad, make sure sing-box is the **same version** on both devices and **VPN is disabled**." : {
-<<<<<<< HEAD
-
-=======
       "localizations" : {
         "fa" : {
           "stringUnit" : {
@@ -8512,7 +8452,6 @@
           }
         }
       }
->>>>>>> 2c0f3e561821283c209cadacef541b81c1d18f63
     },
     "To File" : {
       "localizations" : {
@@ -8571,9 +8510,6 @@
       }
     },
     "Tools" : {
-<<<<<<< HEAD
-
-=======
       "localizations" : {
         "fa" : {
           "stringUnit" : {
@@ -8600,7 +8536,6 @@
           }
         }
       }
->>>>>>> 2c0f3e561821283c209cadacef541b81c1d18f63
     },
     "Traffic" : {
       "localizations" : {
@@ -8855,9 +8790,6 @@
       }
     },
     "Unknown message type %u" : {
-<<<<<<< HEAD
-
-=======
       "localizations" : {
         "fa" : {
           "stringUnit" : {
@@ -8884,7 +8816,6 @@
           }
         }
       }
->>>>>>> 2c0f3e561821283c209cadacef541b81c1d18f63
     },
     "Unsaved Changes" : {
       "localizations" : {

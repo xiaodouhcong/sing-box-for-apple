@@ -89,14 +89,6 @@ jobs:
             -S apple-tool:,apple:,codesign: \
             -s -k ci_keychain_password ci-build.keychain
 
-      # Fix Localizable.xcstrings — xcstrings format is not standard JSON,
-      # use plutil to convert to valid format that Xcode 16 can process
-      - name: Fix Localizable.xcstrings
-        run: |
-          # xcstrings files must be valid JSON; use plutil to validate and rewrite
-          plutil -convert json Localizable.xcstrings -o Localizable.xcstrings || true
-          echo "xcstrings fix attempted"
-
       # xcodebuild archive — disable provisioning profile requirements
       - name: Archive
         run: |
