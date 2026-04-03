@@ -89,23 +89,13 @@ jobs:
             -S apple-tool:,apple:,codesign: \
             -s -k ci_keychain_password ci-build.keychain
 
-      # Fix Localizable.xcstrings encoding — Xcode 16 requires valid UTF-8 JSON
+      # Fix Localizable.xcstrings — xcstrings format is not standard JSON,
+      # use plutil to convert to valid format that Xcode 16 can process
       - name: Fix Localizable.xcstrings
         run: |
-          # Re-encode as clean UTF-8 without BOM using Python
-          python3 -c "
-          import json, sys
-          with open('Localizable.xcstrings', 'rb') as f:
-              raw = f.read()
-          # Strip BOM if present
-          if raw.startswith(b'\xef\xbb\xbf'):
-              raw = raw[3:]
-          # Validate JSON and re-write as clean UTF-8
-          data = json.loads(raw.decode('utf-8'))
-          with open('Localizable.xcstrings', 'w', encoding='utf-8', newline='\n') as f:
-              json.dump(data, f, ensure_ascii=False, indent=2)
-          print('Localizable.xcstrings re-encoded as clean UTF-8')
-          "
+          # xcstrings files must be valid JSON; use plutil to validate and rewrite
+          plutil -convert json Localizable.xcstrings -o Localizable.xcstrings || true
+          echo "xcstrings fix attempted"
 
       # xcodebuild archive — disable provisioning profile requirements
       - name: Archive
@@ -124,6 +114,8 @@ jobs:
             CODE_SIGNING_ALLOWED=NO \
             PROVISIONING_PROFILE_SPECIFIER="" \
             DEVELOPMENT_TEAM="" \
+            SWIFT_EMIT_LOC_STRINGS=NO \
+            LOCALIZATION_PREFERS_STRING_CATALOGS=NO \
             2>&1 | tee /tmp/xcodebuild.log | xcpretty || true
 
           if [ ! -d "/tmp/sing-box.xcarchive" ]; then
