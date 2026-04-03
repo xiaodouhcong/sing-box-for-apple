@@ -40,15 +40,16 @@ jobs:
           go install github.com/sagernet/gomobile/cmd/gobind@v0.1.12
           gomobile init
 
-          # Exact tags from sing-box's cmd/internal/build_libbox/main.go
-          TAGS="with_gvisor,with_quic,with_wireguard,with_utls,with_naive_outbound,with_clash_api,badlinkname,tfogo_checklinkname0,with_tailscale,ts_omit_logtail,ts_omit_ssh,ts_omit_drive,ts_omit_taildrop,ts_omit_webclient,ts_omit_doctor,ts_omit_capture,ts_omit_kube,ts_omit_aws,ts_omit_synology,ts_omit_bird,with_low_memory,with_dhcp,grpcnotrace"
+          # Tags from sing-box's build_libbox/main.go
+          # Removed: badlinkname, tfogo_checklinkname0 (cause linker errors with Go 1.25)
+          TAGS="with_gvisor,with_quic,with_wireguard,with_utls,with_naive_outbound,with_clash_api,with_tailscale,ts_omit_logtail,ts_omit_ssh,ts_omit_drive,ts_omit_taildrop,ts_omit_webclient,ts_omit_doctor,ts_omit_capture,ts_omit_kube,ts_omit_aws,ts_omit_synology,ts_omit_bird,with_low_memory,with_dhcp,grpcnotrace"
 
-          # Build xcframework for iOS only (skip simulator/tvos/macos to save time)
+          # Build xcframework for iOS device only (ios/arm64)
+          # Use explicit arch to avoid building simulator slices
           gomobile bind \
             -v \
-            -target ios \
+            -target ios/arm64 \
             -libname=box \
-            -tags-not-macos=with_low_memory \
             -trimpath \
             -buildvcs=false \
             -tags "$TAGS" \
