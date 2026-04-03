@@ -42,10 +42,11 @@ jobs:
           go run golang.org/x/mobile/cmd/gomobile init
 
           # Build xcframework for iOS
+          # Note: with_ech and with_reality_server tags are deprecated in v1.14.x
           go run golang.org/x/mobile/cmd/gomobile bind \
             -target ios \
             -o "$GITHUB_WORKSPACE/Libbox.xcframework" \
-            -tags with_gvisor,with_quic,with_dhcp,with_wireguard,with_ech,with_utls,with_reality_server,with_clash_api \
+            -tags with_gvisor,with_quic,with_dhcp,with_wireguard,with_utls,with_clash_api \
             github.com/sagernet/sing-box/experimental/libbox
 
           echo "Libbox.xcframework built successfully."
