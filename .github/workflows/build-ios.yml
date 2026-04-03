@@ -33,8 +33,7 @@ jobs:
             -out /tmp/ci.p12 \
             -inkey /tmp/ci.key \
             -in /tmp/ci.crt \
-            -passout pass:ci_password \
-            -legacy
+            -passout pass:ci_password
 
           # Create temporary keychain
           security create-keychain -p ci_keychain_password ci-build.keychain
