@@ -93,7 +93,11 @@
         @objc public var helperNativeCrashData: Data?
         @objc public var extensionNativeCrashData: Data?
 
+<<<<<<< HEAD
         public override init() {
+=======
+        override public init() {
+>>>>>>> 2c0f3e561821283c209cadacef541b81c1d18f63
             super.init()
         }
 

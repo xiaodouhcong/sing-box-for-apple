@@ -1,0 +1,100 @@
+name: Build iOS IPA
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      # Task 2: Checkout with submodules (Runestone framework)
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      # Task 3: Generate self-signed certificate and set up temporary Keychain
+      - name: Set up self-signed certificate
+        run: |
+          # Generate RSA private key and self-signed certificate
+          openssl req -x509 -newkey rsa:2048 \
+            -keyout /tmp/ci.key \
+            -out /tmp/ci.crt \
+            -days 1 -nodes \
+            -subj "/CN=CI Self-Signed/O=CI/C=US"
+
+          # Export as p12
+          openssl pkcs12 -export \
+            -out /tmp/ci.p12 \
+            -inkey /tmp/ci.key \
+            -in /tmp/ci.crt \
+            -passout pass:ci_password \
+            -legacy
+
+          # Create temporary keychain
+          security create-keychain -p ci_keychain_password ci-build.keychain
+          security default-keychain -s ci-build.keychain
+          security unlock-keychain -p ci_keychain_password ci-build.keychain
+          security set-keychain-settings -t 3600 -u ci-build.keychain
+
+          # Import certificate into keychain
+          security import /tmp/ci.p12 \
+            -k ci-build.keychain \
+            -P ci_password \
+            -T /usr/bin/codesign \
+            -T /usr/bin/security
+
+          # Allow codesign to access the key without UI prompt
+          security set-key-partition-list \
+            -S apple-tool:,apple:,codesign: \
+            -s -k ci_keychain_password ci-build.keychain
+
+      # Task 5: xcodebuild archive
+      - name: Archive
+        run: |
+          xcodebuild archive \
+            -project sing-box.xcodeproj \
+            -scheme SFI \
+            -configuration Release \
+            -archivePath /tmp/sing-box.xcarchive \
+            -destination "generic/platform=iOS" \
+            -skipPackagePluginValidation \
+            -skipMacroValidation \
+            CODE_SIGN_STYLE=Manual \
+            CODE_SIGN_IDENTITY="CI Self-Signed" \
+            PROVISIONING_PROFILE_SPECIFIER="" \
+            AD_HOC_CODE_SIGNING_ALLOWED=YES \
+            | xcpretty || true
+          # Verify archive was created
+          ls /tmp/sing-box.xcarchive
+
+      # Task 6: Export IPA from xcarchive
+      - name: Export IPA
+        run: |
+          xcodebuild -exportArchive \
+            -archivePath /tmp/sing-box.xcarchive \
+            -exportPath /tmp/ipa-output \
+            -exportOptionsPlist ExportOptions.plist \
+            -allowProvisioningUpdates
+
+      # Task 7: Upload IPA as artifact with commit SHA in name
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sing-box-${{ github.sha }}
+          path: /tmp/ipa-output/*.ipa
+          retention-days: 7
+          if-no-files-found: error
+
+      # Task 8: Clean up temporary keychain (always runs)
+      - name: Clean up keychain
+        if: always()
+        continue-on-error: true
+        run: |
+          security delete-keychain ci-build.keychain || true
+          rm -f /tmp/ci.key /tmp/ci.crt /tmp/ci.p12

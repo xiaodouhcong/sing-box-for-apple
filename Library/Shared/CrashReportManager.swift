@@ -253,7 +253,10 @@ public class CrashReportManager: ObservableObject {
                 continue
             }
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2c0f3e561821283c209cadacef541b81c1d18f63
     }
 
     private nonisolated static func coalesceArchivedCrashReports() {
