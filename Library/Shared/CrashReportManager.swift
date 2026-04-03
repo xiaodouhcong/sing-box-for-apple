@@ -253,10 +253,6 @@ public class CrashReportManager: ObservableObject {
                 continue
             }
         }
-<<<<<<< HEAD
-
-=======
->>>>>>> 2c0f3e561821283c209cadacef541b81c1d18f63
     }
 
     private nonisolated static func coalesceArchivedCrashReports() {
@@ -577,7 +573,7 @@ enum CrashReportMetadataBuilder {
             appVersion: firstNonEmpty(bundleBuildVersion(appBundle), metadata.appVersion),
             appMarketingVersion: firstNonEmpty(bundleMarketingVersion(appBundle), metadata.appMarketingVersion),
             coreVersion: firstNonEmpty(metadata.coreVersion, normalizedString(LibboxVersion())),
-            goVersion: firstNonEmpty(metadata.goVersion, normalizedString(LibboxGoVersion())),
+            goVersion: firstNonEmpty(metadata.goVersion, nil),
             signalName: firstNonEmpty(metadata.signalName, parsedDetails.signalName),
             signalCode: firstNonEmpty(metadata.signalCode, parsedDetails.signalCode),
             exceptionName: firstNonEmpty(metadata.exceptionName, parsedDetails.exceptionName),

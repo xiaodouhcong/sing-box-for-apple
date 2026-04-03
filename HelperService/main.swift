@@ -12,7 +12,7 @@ let setupOptions = LibboxSetupOptions()
 setupOptions.basePath = WorkingDirectoryManager.helperBasePath
 setupOptions.workingPath = (WorkingDirectoryManager.helperBasePath as NSString).appendingPathComponent("Working")
 setupOptions.tempPath = WorkingDirectoryManager.helperTempDirectoryPath
-setupOptions.crashReportSource = "RootHelper"
+// setupOptions.crashReportSource = "RootHelper" // API not available in this Libbox version
 var setupError: NSError?
 LibboxSetup(setupOptions, &setupError)
 

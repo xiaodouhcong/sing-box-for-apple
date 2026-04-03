@@ -18,7 +18,7 @@ class ApplicationDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCe
         options.basePath = FilePath.sharedDirectory.relativePath
         options.workingPath = FilePath.workingDirectory.relativePath
         options.tempPath = FilePath.cacheDirectory.relativePath
-        options.crashReportSource = "Application"
+        // options.crashReportSource = "Application" // API not available in this Libbox version
         var error: NSError?
         LibboxSetup(options, &error)
         LibboxSetLocale(Locale.current.identifier)

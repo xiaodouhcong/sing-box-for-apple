@@ -149,7 +149,7 @@ open class ExtensionProvider: NEPacketTunnelProvider {
 
         options.logMaxLines = 3000
         options.debug = SharedPreferences.inDebug
-        options.crashReportSource = "NetworkExtension"
+        // options.crashReportSource = "NetworkExtension" // API removed in this Libbox version
 
         #if os(tvOS)
             if let port = effectiveOptions["commandServerPort"] as? NSNumber {

@@ -29,7 +29,7 @@ class ApplicationDelegate: NSObject, UIApplicationDelegate {
         }
         options.commandServerListenPort = port
         options.commandServerSecret = secret
-        options.crashReportSource = "Application"
+        // options.crashReportSource = "Application" // API not available in this Libbox version
         var error: NSError?
         LibboxSetup(options, &error)
         LibboxSetLocale(Locale.current.identifier)
