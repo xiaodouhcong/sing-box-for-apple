@@ -18,49 +18,66 @@ jobs:
         with:
           submodules: recursive
 
-      # Download Libbox.xcframework from sing-box releases
-      # Version must match the app's MARKETING_VERSION (1.14.0)
-      - name: Download Libbox.xcframework
+      # Install Go (required for building Libbox.xcframework)
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.24'
+
+      # Build Libbox.xcframework from sing-box source using gomobile
+      - name: Build Libbox.xcframework
         run: |
-          SING_BOX_VERSION="1.14.0"
-          DOWNLOAD_URL="https://github.com/SagerNet/sing-box/releases/download/v${SING_BOX_VERSION}/Libbox.xcframework.zip"
-          echo "Downloading Libbox.xcframework v${SING_BOX_VERSION}..."
-          curl -L "$DOWNLOAD_URL" -o /tmp/Libbox.xcframework.zip
-          unzip -q /tmp/Libbox.xcframework.zip -d .
-          echo "Libbox.xcframework downloaded and extracted."
-          ls Libbox.xcframework/
+          SING_BOX_VERSION="v1.14.0-alpha.8"
+
+          # Install gomobile
+          go install golang.org/x/mobile/cmd/gomobile@latest
+          go install golang.org/x/mobile/cmd/gobind@latest
+          gomobile init
+
+          # Clone sing-box source at the matching version
+          git clone --depth 1 --branch "$SING_BOX_VERSION" \
+            https://github.com/SagerNet/sing-box.git /tmp/sing-box-src
+
+          cd /tmp/sing-box-src
+
+          # Build xcframework for iOS (arm64 device + simulator)
+          gomobile bind \
+            -target ios \
+            -o /tmp/Libbox.xcframework \
+            -tags with_gvisor,with_quic,with_dhcp,with_wireguard,with_ech,with_utls,with_reality_server,with_clash_api \
+            github.com/sagernet/sing-box/experimental/libbox
+
+          # Copy to workspace
+          cp -r /tmp/Libbox.xcframework "$GITHUB_WORKSPACE/Libbox.xcframework"
+          echo "Libbox.xcframework built successfully."
+          ls "$GITHUB_WORKSPACE/Libbox.xcframework/"
 
       # Generate self-signed certificate and set up temporary Keychain
       - name: Set up self-signed certificate
         run: |
-          # Generate RSA private key and self-signed certificate
           openssl req -x509 -newkey rsa:2048 \
             -keyout /tmp/ci.key \
             -out /tmp/ci.crt \
             -days 1 -nodes \
             -subj "/CN=CI Self-Signed/O=CI/C=US"
 
-          # Export as p12
           openssl pkcs12 -export \
             -out /tmp/ci.p12 \
             -inkey /tmp/ci.key \
             -in /tmp/ci.crt \
             -passout pass:ci_password
 
-          # Create temporary keychain
           security create-keychain -p ci_keychain_password ci-build.keychain
           security default-keychain -s ci-build.keychain
           security unlock-keychain -p ci_keychain_password ci-build.keychain
           security set-keychain-settings -t 3600 -u ci-build.keychain
 
-          # Import certificate into keychain
           security import /tmp/ci.p12 \
             -k ci-build.keychain \
             -P ci_password \
             -T /usr/bin/codesign \
             -T /usr/bin/security
 
-          # Allow codesign to access the key without UI prompt
           security set-key-partition-list \
             -S apple-tool:,apple:,codesign: \
             -s -k ci_keychain_password ci-build.keychain
@@ -84,7 +101,6 @@ jobs:
             DEVELOPMENT_TEAM="" \
             2>&1 | tee /tmp/xcodebuild.log | xcpretty || true
 
-          # Verify archive was created
           if [ ! -d "/tmp/sing-box.xcarchive" ]; then
             echo "Archive failed. Last 50 lines of build log:"
             tail -50 /tmp/xcodebuild.log
@@ -92,7 +108,7 @@ jobs:
           fi
           echo "Archive succeeded."
 
-      # Package xcarchive into IPA manually (bypasses exportArchive profile check)
+      # Package xcarchive into IPA (bypasses exportArchive profile requirement)
       - name: Package IPA
         run: |
           APP_PATH=$(find /tmp/sing-box.xcarchive/Products -name "*.app" | head -1)
@@ -103,7 +119,7 @@ jobs:
 
           cd /tmp/ipa-output
           zip -r "sing-box.ipa" Payload/
-          echo "IPA created: /tmp/ipa-output/sing-box.ipa"
+          echo "IPA created:"
           ls -lh /tmp/ipa-output/sing-box.ipa
 
       # Upload IPA as artifact with commit SHA in name
