@@ -28,7 +28,13 @@ struct MainView: View {
                         .focusSection()
                 }
                 .tag(page)
-                .tabItem { page.label }
+                .tabItem {
+                    if page == .tools, environments.crashReportManager.unreadCount > 0 {
+                        Label("\(page.title) (\(environments.crashReportManager.unreadCount))", systemImage: "terminal.fill")
+                    } else {
+                        page.label
+                    }
+                }
             }
         }
         .onAppear {

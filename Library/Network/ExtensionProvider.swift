@@ -80,6 +80,22 @@ open class ExtensionProvider: NEPacketTunnelProvider {
         private var locationDelegate: stubLocationDelegate?
     #endif
 
+    override public init() {
+        #if os(macOS)
+            if Variant.useSystemExtension {
+                NativeCrashReporter.installForCurrentProcess(
+                    basePath: FileManager.default.homeDirectoryForCurrentUser
+                        .appendingPathComponent("NativeCrash")
+                )
+            } else {
+                NativeCrashReporter.installForCurrentProcess()
+            }
+        #else
+            NativeCrashReporter.installForCurrentProcess()
+        #endif
+        super.init()
+    }
+
     override open func startTunnel(options startOptions: [String: NSObject]?) async throws {
         let basePath: String
         let workingPath: String
@@ -94,12 +110,12 @@ open class ExtensionProvider: NEPacketTunnelProvider {
             } else {
                 basePath = FilePath.sharedDirectory.relativePath
                 workingPath = FilePath.workingDirectory.relativePath
-                tempPath = FilePath.cacheDirectory.relativePath
+                tempPath = FilePath.workingDirectory.relativePath
             }
         #else
             basePath = FilePath.sharedDirectory.relativePath
             workingPath = FilePath.workingDirectory.relativePath
-            tempPath = FilePath.cacheDirectory.relativePath
+            tempPath = FilePath.workingDirectory.relativePath
         #endif
 
         startOptionsURL = URL(fileURLWithPath: basePath).appendingPathComponent(ExtensionStartOptions.snapshotFileName)
@@ -132,6 +148,8 @@ open class ExtensionProvider: NEPacketTunnelProvider {
         options.tempPath = tempPath
 
         options.logMaxLines = 3000
+        options.debug = SharedPreferences.inDebug
+        options.crashReportSource = "NetworkExtension"
 
         #if os(tvOS)
             if let port = effectiveOptions["commandServerPort"] as? NSNumber {
@@ -146,13 +164,6 @@ open class ExtensionProvider: NEPacketTunnelProvider {
         LibboxSetup(options, &setupError)
         if let setupError {
             throw ExtensionStartupError("(packet-tunnel) error: setup service: \(setupError.localizedDescription)")
-        }
-
-        let stderrPath = URL(fileURLWithPath: tempPath, isDirectory: true).appendingPathComponent("stderr.log").path
-        var stderrError: NSError?
-        LibboxRedirectStderr(stderrPath, &stderrError)
-        if let stderrError {
-            throw ExtensionStartupError("(packet-tunnel) redirect stderr error: \(stderrError.localizedDescription)")
         }
 
         #if !os(macOS)

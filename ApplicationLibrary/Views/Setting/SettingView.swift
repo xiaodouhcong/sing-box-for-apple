@@ -149,7 +149,6 @@ public struct SettingView: View {
         }
     #endif
 
-    @StateObject private var viewModel = SettingViewModel()
     public init() {}
     public var body: some View {
         FormView {
@@ -193,25 +192,6 @@ public struct SettingView: View {
                     #endif
                 }
             #endif
-            Section("Debug") {
-                FormNavigationLink {
-                    ServiceLogView()
-                } label: {
-                    Label("Service Log", systemImage: "doc.on.clipboard")
-                }
-                FormTextItem("Taiwan Flag Available", "touchid") {
-                    if viewModel.isLoading {
-                        Text("Loading...")
-                            .onAppear {
-                                Task.detached {
-                                    await viewModel.checkTaiwanFlagAvailability()
-                                }
-                            }
-                    } else {
-                        Text(viewModel.taiwanFlagAvailable.toString())
-                    }
-                }
-            }
         }
         #if os(macOS)
         .formNavigationDestination(for: SettingsPage.self) { page in

@@ -75,6 +75,16 @@
         }
       }
     },
+    "%@ (%lld)" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ (%2$lld)"
+          }
+        }
+      }
+    },
     "%@ %@" : {
       "localizations" : {
         "en" : {
@@ -832,6 +842,12 @@
           }
         }
       }
+    },
+    "Apple TV" : {
+
+    },
+    "Application" : {
+      "shouldTranslate" : false
     },
     "Are you sure to import profile %@?" : {
       "localizations" : {
@@ -2044,6 +2060,12 @@
         }
       }
     },
+    "Crash Report" : {
+
+    },
+    "Crash Trigger" : {
+      "shouldTranslate" : false
+    },
     "Create" : {
       "localizations" : {
         "fa" : {
@@ -2352,6 +2374,9 @@
           }
         }
       }
+    },
+    "Delete All" : {
+
     },
     "Deprecated Warning" : {
       "localizations" : {
@@ -3025,6 +3050,9 @@
         }
       }
     },
+    "Empty" : {
+
+    },
     "Empty connections" : {
       "localizations" : {
         "fa" : {
@@ -3049,34 +3077,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無連接"
-          }
-        }
-      }
-    },
-    "Empty content" : {
-      "localizations" : {
-        "fa" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "بدون محتوا"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Нет содержимого"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "无内容"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "無內容"
           }
         }
       }
@@ -3484,33 +3484,11 @@
       },
       "shouldTranslate" : false
     },
-    "Export" : {
-      "localizations" : {
-        "fa" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "خروجی"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Экспорт"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "导出"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "導出"
-          }
-        }
-      }
+    "Export Complete" : {
+
+    },
+    "Export Crash Report" : {
+
     },
     "Failed to decode QRS data" : {
       "localizations" : {
@@ -3708,6 +3686,9 @@
         }
       }
     },
+    "Files" : {
+
+    },
     "Filter" : {
       "localizations" : {
         "fa" : {
@@ -3898,6 +3879,9 @@
           }
         }
       }
+    },
+    "Go Crash" : {
+      "shouldTranslate" : false
     },
     "Goroutines" : {
       "localizations" : {
@@ -5143,29 +5127,6 @@
         }
       }
     },
-    "Machine: " : {
-      "localizations" : {
-        "fa" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Machine: "
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Machine: "
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Machine: "
-          }
-        }
-      },
-      "shouldTranslate" : false
-    },
     "Managing working directory requires Helper Service." : {
       "localizations" : {
         "fa" : {
@@ -5525,6 +5486,9 @@
         }
       }
     },
+    "Native Crash" : {
+      "shouldTranslate" : false
+    },
     "Need Reboot" : {
       "localizations" : {
         "fa" : {
@@ -5580,6 +5544,9 @@
           }
         }
       }
+    },
+    "NetworkExtension" : {
+      "shouldTranslate" : false
     },
     "Never Connect" : {
       "localizations" : {
@@ -6560,6 +6527,9 @@
         }
       }
     },
+    "Read from connection: %@" : {
+
+    },
     "Real-time Speed" : {
       "localizations" : {
         "fa" : {
@@ -6723,6 +6693,12 @@
         }
       }
     },
+    "Remote error: %@" : {
+
+    },
+    "Reports" : {
+
+    },
     "Required" : {
       "localizations" : {
         "fa" : {
@@ -6835,6 +6811,9 @@
           }
         }
       }
+    },
+    "RootHelper" : {
+      "shouldTranslate" : false
     },
     "Rules" : {
       "localizations" : {
@@ -7088,6 +7067,9 @@
         }
       }
     },
+    "Sending..." : {
+
+    },
     "Service is Running" : {
       "localizations" : {
         "fa" : {
@@ -7112,34 +7094,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "服務正在運行"
-          }
-        }
-      }
-    },
-    "Service Log" : {
-      "localizations" : {
-        "fa" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "گزارش سرویس"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Журнал службы"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "服务日志"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "服務日誌"
           }
         }
       }
@@ -7367,6 +7321,9 @@
           }
         }
       }
+    },
+    "Share With Configuration" : {
+
     },
     "Show in Menu Bar" : {
       "localizations" : {
@@ -7979,29 +7936,6 @@
         }
       }
     },
-    "System: " : {
-      "localizations" : {
-        "fa" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "System: "
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "System: "
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "System: "
-          }
-        }
-      },
-      "shouldTranslate" : false
-    },
     "Taiwan Flag Available" : {
       "localizations" : {
         "fa" : {
@@ -8198,6 +8132,9 @@
         }
       }
     },
+    "To export this crash report to your iPhone or iPad, make sure sing-box is the **same version** on both devices and **VPN is disabled**." : {
+
+    },
     "To File" : {
       "localizations" : {
         "fa" : {
@@ -8253,6 +8190,9 @@
           }
         }
       }
+    },
+    "Tools" : {
+
     },
     "Traffic" : {
       "localizations" : {
@@ -8505,6 +8445,9 @@
           }
         }
       }
+    },
+    "Unknown message type %u" : {
+
     },
     "Unsaved Changes" : {
       "localizations" : {

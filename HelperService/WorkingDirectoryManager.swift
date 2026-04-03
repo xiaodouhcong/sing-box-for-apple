@@ -6,6 +6,26 @@ enum WorkingDirectoryManager {
         "/var/root/Library/Containers/\(AppConfiguration.systemExtensionBundleID)/Data/Working"
     }
 
+    static var tempDirectoryPath: String {
+        "/var/root/Library/Containers/\(AppConfiguration.systemExtensionBundleID)/Data/Temp"
+    }
+
+    static var helperBasePath: String {
+        "/var/root/Library/Containers/\(AppConfiguration.rootHelperBundleID)/Data"
+    }
+
+    static var helperTempDirectoryPath: String {
+        (helperBasePath as NSString).appendingPathComponent("Temp")
+    }
+
+    static var helperNativeCrashBasePath: String {
+        (helperBasePath as NSString).appendingPathComponent("NativeCrash")
+    }
+
+    static var extensionNativeCrashBasePath: String {
+        "/var/root/Library/Containers/\(AppConfiguration.systemExtensionBundleID)/Data/NativeCrash"
+    }
+
     static func getSize() -> Int64 {
         let path = workingDirectoryPath
         guard FileManager.default.fileExists(atPath: path) else {
