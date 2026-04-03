@@ -75,6 +75,9 @@
         }
       }
     },
+    "%@ (%lld)" : {
+      "shouldTranslate": false
+    },
     "%@ %@" : {
       "localizations" : {
         "en" : {
@@ -832,6 +835,37 @@
           }
         }
       }
+    },
+    "Apple TV" : {
+      "localizations" : {
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple TV"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple TV"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple TV"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple TV"
+          }
+        }
+      }
+    },
+    "Application" : {
+      "shouldTranslate" : false
     },
     "Are you sure to import profile %@?" : {
       "localizations" : {
@@ -2044,6 +2078,37 @@
         }
       }
     },
+    "Crash Report" : {
+      "localizations" : {
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "گزارش خرابی"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отчёт о сбое"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "崩溃报告"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "當機報告"
+          }
+        }
+      }
+    },
+    "Crash Trigger" : {
+      "shouldTranslate" : false
+    },
     "Create" : {
       "localizations" : {
         "fa" : {
@@ -2349,6 +2414,34 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "刪除"
+          }
+        }
+      }
+    },
+    "Delete All" : {
+      "localizations" : {
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "حذف همه"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить все"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "全部删除"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "全部刪除"
           }
         }
       }
@@ -3025,6 +3118,34 @@
         }
       }
     },
+    "Empty" : {
+      "localizations" : {
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "خالی"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пусто"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "空"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "空"
+          }
+        }
+      }
+    },
     "Empty connections" : {
       "localizations" : {
         "fa" : {
@@ -3049,34 +3170,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無連接"
-          }
-        }
-      }
-    },
-    "Empty content" : {
-      "localizations" : {
-        "fa" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "بدون محتوا"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Нет содержимого"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "无内容"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "無內容"
           }
         }
       }
@@ -3484,30 +3577,58 @@
       },
       "shouldTranslate" : false
     },
-    "Export" : {
+    "Export Complete" : {
       "localizations" : {
         "fa" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "خروجی"
+            "value" : "صادرات کامل شد"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Экспорт"
+            "value" : "Экспорт завершён"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "导出"
+            "value" : "导出完成"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "導出"
+            "value" : "匯出完成"
+          }
+        }
+      }
+    },
+    "Export Crash Report" : {
+      "localizations" : {
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "صادرات گزارش خرابی"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Экспорт отчёта о сбое"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "导出崩溃报告"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "匯出當機報告"
           }
         }
       }
@@ -3708,6 +3829,34 @@
         }
       }
     },
+    "Files" : {
+      "localizations" : {
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فایل‌ها"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файлы"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文件"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檔案"
+          }
+        }
+      }
+    },
     "Filter" : {
       "localizations" : {
         "fa" : {
@@ -3898,6 +4047,9 @@
           }
         }
       }
+    },
+    "Go Crash" : {
+      "shouldTranslate" : false
     },
     "Goroutines" : {
       "localizations" : {
@@ -5143,29 +5295,6 @@
         }
       }
     },
-    "Machine: " : {
-      "localizations" : {
-        "fa" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Machine: "
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Machine: "
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Machine: "
-          }
-        }
-      },
-      "shouldTranslate" : false
-    },
     "Managing working directory requires Helper Service." : {
       "localizations" : {
         "fa" : {
@@ -5525,6 +5654,9 @@
         }
       }
     },
+    "Native Crash" : {
+      "shouldTranslate" : false
+    },
     "Need Reboot" : {
       "localizations" : {
         "fa" : {
@@ -5580,6 +5712,9 @@
           }
         }
       }
+    },
+    "NetworkExtension" : {
+      "shouldTranslate" : false
     },
     "Never Connect" : {
       "localizations" : {
@@ -6560,6 +6695,34 @@
         }
       }
     },
+    "Read from connection: %@" : {
+      "localizations" : {
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "خواندن از اتصال: %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чтение из соединения: %@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "读取连接：%@"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "讀取連線：%@"
+          }
+        }
+      }
+    },
     "Real-time Speed" : {
       "localizations" : {
         "fa" : {
@@ -6723,6 +6886,62 @@
         }
       }
     },
+    "Remote error: %@" : {
+      "localizations" : {
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "خطای راه دور: %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ошибка удалённого подключения: %@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "远程错误：%@"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "遠端錯誤：%@"
+          }
+        }
+      }
+    },
+    "Reports" : {
+      "localizations" : {
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "گزارش‌ها"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отчёты"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "报告"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "報告"
+          }
+        }
+      }
+    },
     "Required" : {
       "localizations" : {
         "fa" : {
@@ -6835,6 +7054,9 @@
           }
         }
       }
+    },
+    "RootHelper" : {
+      "shouldTranslate" : false
     },
     "Rules" : {
       "localizations" : {
@@ -7088,6 +7310,34 @@
         }
       }
     },
+    "Sending..." : {
+      "localizations" : {
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "در حال ارسال..."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отправка..."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "发送中..."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "傳送中..."
+          }
+        }
+      }
+    },
     "Service is Running" : {
       "localizations" : {
         "fa" : {
@@ -7112,34 +7362,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "服務正在運行"
-          }
-        }
-      }
-    },
-    "Service Log" : {
-      "localizations" : {
-        "fa" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "گزارش سرویس"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Журнал службы"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "服务日志"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "服務日誌"
           }
         }
       }
@@ -7364,6 +7586,34 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "通過二維碼分享 URL"
+          }
+        }
+      }
+    },
+    "Share With Configuration" : {
+      "localizations" : {
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اشتراک‌گذاری با پیکربندی"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поделиться с конфигурацией"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "附带配置分享"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "附帶配置分享"
           }
         }
       }
@@ -7979,29 +8229,6 @@
         }
       }
     },
-    "System: " : {
-      "localizations" : {
-        "fa" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "System: "
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "System: "
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "System: "
-          }
-        }
-      },
-      "shouldTranslate" : false
-    },
     "Taiwan Flag Available" : {
       "localizations" : {
         "fa" : {
@@ -8198,6 +8425,34 @@
         }
       }
     },
+    "To export this crash report to your iPhone or iPad, make sure sing-box is the **same version** on both devices and **VPN is disabled**." : {
+      "localizations" : {
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "برای صادرات این گزارش خرابی به iPhone یا iPad، مطمئن شوید که sing-box در هر دو دستگاه **نسخه یکسان** است و **VPN غیرفعال** است."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чтобы экспортировать этот отчёт о сбое на iPhone или iPad, убедитесь, что sing-box на обоих устройствах **одной версии** и **VPN отключён**."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "要将此崩溃报告导出到 iPhone 或 iPad，请确保两台设备上的 sing-box 为**相同版本**且**已关闭 VPN**。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "要將此當機報告匯出至 iPhone 或 iPad，請確認兩部裝置上的 sing-box 為**相同版本**且**已關閉 VPN**。"
+          }
+        }
+      }
+    },
     "To File" : {
       "localizations" : {
         "fa" : {
@@ -8250,6 +8505,34 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "要從您的 iPhone 或 iPad 導入配置，請確保兩臺設備上的 sing-box 是**相同版本**且 **VPN 已禁用**。"
+          }
+        }
+      }
+    },
+    "Tools" : {
+      "localizations" : {
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ابزارها"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Инструменты"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "工具"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "工具"
           }
         }
       }
@@ -8502,6 +8785,34 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "卸載"
+          }
+        }
+      }
+    },
+    "Unknown message type %u" : {
+      "localizations" : {
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نوع پیام ناشناخته %u"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неизвестный тип сообщения %u"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未知消息类型 %u"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未知訊息類型 %u"
           }
         }
       }

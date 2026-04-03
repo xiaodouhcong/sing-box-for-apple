@@ -9,13 +9,16 @@ import UserNotifications
 
 class ApplicationDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     private var profileServer: ProfileServer?
+    private var crashReportServer: CrashReportServer?
 
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+        NativeCrashReporter.installForCurrentProcess()
         NSLog("Here I stand")
         let options = LibboxSetupOptions()
         options.basePath = FilePath.sharedDirectory.relativePath
         options.workingPath = FilePath.workingDirectory.relativePath
         options.tempPath = FilePath.cacheDirectory.relativePath
+        options.crashReportSource = "Application"
         var error: NSError?
         LibboxSetup(options, &error)
         LibboxSetLocale(Locale.current.identifier)
@@ -76,6 +79,16 @@ class ApplicationDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCe
                 NSLog("started profile server")
             } catch {
                 NSLog("setup profile server error: \(error.localizedDescription)")
+            }
+            do {
+                let crashReportServer = try CrashReportServer()
+                crashReportServer.start()
+                await MainActor.run {
+                    self.crashReportServer = crashReportServer
+                }
+                NSLog("started crash report server")
+            } catch {
+                NSLog("setup crash report server error: \(error.localizedDescription)")
             }
             registerFileProviderDomain()
         }
